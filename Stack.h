@@ -26,7 +26,7 @@ public:
 	void StackPush(stack *s, void *elementAddress);
 	void StackPop(stack *s, void *elementAddress);
 	static void StackGrow(stack *s);
-	void* m_memcpy(void *dest, void* src, int len);
+	__declspec(naked) void* m_memcpy(void *dest, void* src, int len);
 
 };
 
