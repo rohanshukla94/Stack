@@ -1,2 +1,2 @@
 # Stack
-Using Generic C.
+Using Generics in C++.
