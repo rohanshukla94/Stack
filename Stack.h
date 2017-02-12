@@ -1,33 +1,19 @@
-#ifndef _STACK_H_
-#define _STACK_H_
-#include <stdio.h>
-#include <cstring>
-#include <iostream>
-#include <assert.h>
+#ifndef _STACK_H
+#define _STACK_H
 
-using namespace std;
-
-
-class StackLib
+typedef struct 
 {
-protected:
-	typedef struct {
-		
-		void *elements; //Here you can insert your vertex list I suppose?
-		int elementSize;
-		int logLength;
-		int allocLength;
-
-	} stack;
-public:
-
-	void StackNew(stack *s, int elemSize);
-	void StackRemove(stack *s);
-	void StackPush(stack *s, void *elementAddress);
-	void StackPop(stack *s, void *elementAddress);
-	static void StackGrow(stack *s);
-	__declspec(naked) void* m_memcpy(void *dest, void* src, int len);
-
+	void * elements;
+	int elementSize;
+	int logLength;
+	int allocLength;
+	void(*free_function)(void*);
 };
+
+void stack_init(stack *s, int elementSize, void(*free_function)(void*));
+void stack_destroy(stack *s);
+void stack_push(stack *s, void *elementAddress);
+void stack_pop(stack *s, void *elementAddress);
+
 
 #endif
